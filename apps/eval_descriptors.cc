@@ -127,7 +127,7 @@ int main(int argc, char** argv)
 {
   ProgramOptions options(argv[0]);
   options
-      ("config,c", "/home/halismai/code/bpvo/conf/tsukuba_eval.cfg", "config_file")
+      ("config,c", "/home/sourav/workspace/bpvo/conf/tsukuba_eval.cfg", "config_file")
       ("output,o", "", "output prefix")
       ("numframes,n", int(700), "number of frames to process").parse(argc, argv);
 

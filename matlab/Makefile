@@ -1,21 +1,21 @@
 CXX = c++ # /opt/intel/bin/icpc
 CC  = c++ # /opt/intel/bin/icc
 LD  = c++ #/opt/intel/bin/xiar
-MEX = /usr/local/MATLAB/R2015a/bin/mex
-MEX_SUFFIX = $(shell /usr/local/MATLAB/R2015a/bin/mexext)
+MEX = /workspace/MATLAB/bin/mex
+MEX_SUFFIX = $(shell /workspace/MATLAB/bin/mexext)
 MEX_OUT_DIR = .
 
 MEX_SRC = $(wildcard *_mex.cc)
 LIB_SRC = $(filter-out $(MEX_SRC) $(wildcard *.cc,*.h))
 LIB_OBJ = $(patsubst %.cc,%.o, $(LIB_SRC))
 
-INCLUDES = -I/home/halismai/code/mexmat \
-					 -I/usr/local/MATLAB/R2015a/extern/include/ \
-					 -I/usr/local/include/eigen3/ \
-					 -I/home/halismai/code/bpvo/
+INCLUDES = -I/workspace/bpvo/mexmat \
+					 -I/workspace/MATLAB/extern/include/ \
+					 -I/workspace/include/eigen3/ \
+					 -I/workspace/bpvo/
 
-LD_FLAGS = /home/halismai/code/bpvo/build/bin/libbpvo.a \
-					 /home/halismai/code/bpvo/build/bin/libbpvo_utils.a \
+LD_FLAGS = /workspace/bpvo/build/bin/libbpvo.a \
+					 /workspace/bpvo/build/bin/libbpvo_utils.a \
 					 -lgomp -ltbb -lopencv_core \
 					 -L/usr/local/lib/ -lopencv_core -lopencv_imgproc
 

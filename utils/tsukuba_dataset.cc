@@ -43,9 +43,9 @@ bool TsukubaSyntheticDataset::init(const ConfigFile& cf)
     auto illumination = cf.get<std::string>("Illumination", "fluorescent");
     auto frame_start = cf.get<int>("FirstFrameNumber", 1); // tsukuba starts from 1
 
-    auto img_fmt = Format("illumination/%s/left/tsukuba_%s_L_%s.png",
-                          illumination.c_str(), illumination.c_str(), "%05d");
-    auto dmap_fmt = Format("groundtruth/disparity_maps/left/tsukuba_disparity_L_%s.png", "%05d");
+    auto img_fmt = Format("lef/frame_%s.png",
+                           "%d");
+    auto dmap_fmt = Format("disparity_maps/left/frame_%s.png", "%d");
 
     this->_image_filenames = make_unique<FileLoader>(root_dir, img_fmt, frame_start);
     this->_disparity_filenames = make_unique<FileLoader>(root_dir, dmap_fmt, frame_start);

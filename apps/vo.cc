@@ -41,7 +41,7 @@ int main(int argc, char** argv)
 
   ProgramOptions options;
   options
-      ("config,c", "/home/halismai/code/bpvo/conf/tsukuba.cfg", "config file")
+      ("config,c", "/home/sourav/workspace/bpvo/conf/tsukuba.cfg", "config file")
       ("output,o", "output", "trajectory output file")
       ("numframes,n", int(100), "number of frames to process")
       ("buffersize,b", int(16), "buffer size to load images")

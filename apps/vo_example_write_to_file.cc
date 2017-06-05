@@ -3,6 +3,7 @@
 #include "bpvo/utils.h"
 #include "bpvo/timer.h"
 #include "utils/program_options.h"
+#include "utils/viz.h"
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -12,10 +13,12 @@
 //
 
 static const char* LEFT_IMAGE_PREFIX =
-"/home/halismai/data/NewTsukubaStereoDataset/illumination/fluorescent/left/tsukuba_fluorescent_L_%05d.png";
+//"/home/halismai/data/NewTsukubaStereoDataset/illumination/fluorescent/left/tsukuba_fluorescent_L_%05d.png";
+"/home/sourav/workspace/NTSD-200/fluorescent/left/frame_%d.png";
 
 static const char* DMAP_PREFIX =
-"/home/halismai/data/NewTsukubaStereoDataset/groundtruth/disparity_maps/left/tsukuba_disparity_L_%05d.png";
+//"/home/halismai/data/NewTsukubaStereoDataset/groundtruth/disparity_maps/left/tsukuba_disparity_L_%05d.png";
+"/home/sourav/workspace/NTSD-200/disparity_maps/left/frame_%d.png";
 
 using namespace bpvo;
 
@@ -94,6 +97,13 @@ int main(int argc, char** argv)
     fflush(stdout);
 
     trajectory.push_back( result.pose );
+    std::cout << result.pose << std::endl;
+
+    cv::Mat dmap = frame.disparity.clone();
+//    colorizeDisparity(dmap,dmap,1.0,128.0);
+    overlayDisparity(frame.image,dmap,dmap,0.5,1.0,128.0);
+    cv::imshow("dmap",dmap);
+    cv::waitKey(1);
   }
 
   printf("\nProcessed %d frames @ %0.2f Hz\n", nframes, nframes / total_time);

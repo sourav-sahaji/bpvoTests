@@ -13,7 +13,7 @@
 # You should have received a copy of the Lesser GNU General Public License
 # along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
 project(bpvo C CXX)
 
@@ -28,7 +28,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 set(CMAKE_INSTALL_PREFIX "/usr/local" CACHE PATH "Installation directory")
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Config" FORCE)
 
-option(BUILD_STATIC   "Build static libraries" OFF)
+option(BUILD_STATIC   "Build static libraries" ON)
 option(BUILD_MATLAB   "Build Matlab bindings"  OFF)
 option(WITH_PROFILER  "With Google Profiler"   OFF)
 option(WITH_TCMALLOC  "With Google TCMalloc"   OFF)
@@ -37,7 +37,7 @@ option(WITH_TBB       "with Intel TBB"         OFF)
 option(WITH_OPENMP    "use OpenMP"             OFF)
 # boost is needed for the utils library
 option(WITH_BOOST     "Use boost program_options & circular_buffer"     ON)
-option(WITH_GPL_CODE  "Use external code with GPL licenses or similar"  OFF)
+option(WITH_GPL_CODE  "Use external code with GPL licenses or similar"  ON)
 
 option(ENABLE_PROFILING "enable profiling" OFF)
 option(ENABLE_FAST_MATH "enable fast math" OFF)
@@ -135,8 +135,8 @@ set(Boost_USE_STATIC_RUNTIME  ON)
 set(Boost_USE_MULTITHREAD     ON)
 find_package(Boost 1.59.0 REQUIRED COMPONENTS program_options)
 add_definitions(-DWITH_BOOST)
-include_directories(${Boost_INCLUDE_DIRS})
-list(APPEND MY_LIBRARIES ${Boost_LIBRARIES})
+include_directories(/usr/include/boost/)
+list(APPEND MY_LIBRARIES /usr/lib/libboost_program_options.a)
 
 if(WITH_DISPARITY_SPACE_WARP)
   add_definitions(-DWITH_DISPARITY_SPACE_WARP)
@@ -155,7 +155,7 @@ if(TBB_FOUND)
   endif()
 endif()
 
-if(WITH_GPL_CODE)
+if(WITH__CODE)
   add_definitions(-DWITH_GPL_CODE)
 endif()
 

@@ -9,7 +9,7 @@ endforeach()
 
 ## Need to set the memxat directory
 ## TODO integerate this in the build system
-list(APPEND MEX_FLAGS "-I/home/halismai/code/mexmat")
+list(APPEND MEX_FLAGS "-I/workspace/bpvo/mexmat")
 
 list(APPEND MEX_FLAGS "-DMEXMAT_WITH_EIGEN")
 list(APPEND MEX_FLAGS "-DMEXMAT_WITH_OPENCV")
@@ -20,7 +20,7 @@ set(FLAGS -O -largeArrayDims CXXFLAGS='-fPIC ${MEX_FLAGS}')
 set(MEX_OUT_DIR ${CMAKE_BINARY_DIR}/bin)
 set(MEXEXT mexa64)
 
-set(MEX_COMPILER /usr/local/MATLAB/R2015a/bin/mex)
+set(MEX_COMPILER /workspace/MATLAB/bin/mex)
 
 # will only append the ones needed by the bpvo core
 list(APPEND MEX_LIBS -lopencv_core -lopencv_imgproc)
